@@ -41,6 +41,11 @@
   font-size: 20px;
 }
 
+.topbar-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5%;
+}
 
 .search-bar {
   padding: 3px 6px;
@@ -59,4 +64,31 @@
   width: 400px;
   font-weight: 300;
   font-size: 14px;
+}
+
+.top-bar-btn {
+  background-color: #6C63FF;
+  color: #F7F7F7;
+  border: none;
+  font-size: 14px;
+  
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.dropdow-option {
+  background-color: white;
+  color: #6C63FF;
+}
+
+.type-dropdown-btn {
+  padding: 1px 5px; 
+  max-width: 60px;
+}
+
+.theme-mode-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 8px; 
 }
