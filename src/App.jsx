@@ -1,11 +1,15 @@
 import { useState } from 'react'
+import SearchSection from './components/SearchSection'
+import Notes from './components/Notes'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>SMACK</div>
+      <div className='outer-layout-div'>
+      <SearchSection />
+      <Notes />
+      </div>
     </>
   )
 }
