@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 } */
  :root {
-  background-color: white
+  background-color: white;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   color-scheme: light dark;
@@ -107,17 +107,57 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  z-index: 100;
   height: 100%;
   width: 100%;
   top: 0;
-  background-color: rgba(247, 247, 247, 0.3);
   border: none;
+}
+
+.note-form-overlay-btn {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(247, 247, 247, 0.8);
+  border: none;
+  cursor: pointer;
 }
 
 .note-form {
   background-color: white;
+  position: absolute;
+  z-index: 15;
   margin-top: 100px;
-  border: 1px solid black;
-  padding: 20px 10px;
+  padding: 5px 15px 15px 20px;
+  border-radius: 16px;
+  width: 25%;
+}
+
+.new-note-input {
+  width: 90%;
+}
+
+.note-form-btn {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.cancel-btn  {
+  color: #6C63FF;
+  background-color: white;
+  border: 1px solid #6C63FF;
+}
+
+.apply-btn  {
+  color: white;
+  background-color: #6C63FF;
+  border: 1px solid white;
+}
+
+.note-form-btn-div {
+  margin-top: 80px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
 }

@@ -6,13 +6,25 @@ export default function Notes(props) {
 
   return (
     <>
-      <button className='note-form-overlay'>
-        <div className='note-form'> 
-          <p>smack</p>
-          <p>smack</p>
-          <p>smack</p>
+      {noteFormActive? 
+      (
+      <div className='note-form-overlay'>
+      <button className='note-form-overlay-btn' 
+      onClick={() => {setNoteFormActive(false)}}>
+      </button>
+      <div className='note-form'> 
+        <h3> New Note </h3>
+        <input 
+          className='new-note-input'
+          placeholder='Input your Note..'
+          />
+          <div className="note-form-btn-div">
+            <button className='note-form-btn cancel-btn' >Cancel</button>
+            <button className='note-form-btn apply-btn' >Apply</button>
+          </div>
         </div>
-      </button> 
+      </div>
+      ) : (null)}
 
       <div>
         NOTES
