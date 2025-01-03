@@ -76,14 +76,16 @@
   border-radius: 4px;
 }
 
+
 .dropdow-option {
   background-color: white;
   color: #6C63FF;
+  border-radius: 4px;
 }
 
 .type-dropdown-btn {
-  padding: 1px 5px; 
-  max-width: 60px;
+  padding: 1px 5px;
+  max-width: 80px;
 }
 
 .theme-mode-btn {

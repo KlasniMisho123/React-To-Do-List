@@ -34,7 +34,7 @@ export default function SearchSection() {
           </>
         </div>
         <select type="dropdown" className='type-dropdown-btn top-bar-btn'>
-          <option className='dropdow-option'>ALL</option>
+          <option className='dropdow-option'>All</option>
           <option className='dropdow-option'>Complete</option>
           <option className='dropdow-option'>Incomplete</option>
         </select>
