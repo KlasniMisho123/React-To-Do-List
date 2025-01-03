@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import SearchSection from './components/SearchSection'
-import Notes from './components/Notes'
 
 function App() {
 
@@ -8,7 +7,6 @@ function App() {
     <>
       <div className='outer-layout-div'>
       <SearchSection />
-      <Notes />
       </div>
     </>
   )
