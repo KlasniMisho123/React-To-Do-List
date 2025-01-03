@@ -117,12 +117,14 @@
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: rgba(247, 247, 247, 0.8);
+  background-color: rgba(202, 197, 197, 0.3);
   border: none;
   cursor: pointer;
 }
 
 .note-form {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   position: absolute;
   z-index: 15;
@@ -133,7 +135,18 @@
 }
 
 .new-note-input {
-  width: 90%;
+  width: 95%;
+  padding: 8px;
+  background-color: transparent;
+  outline: none;
+  border-radius: 4px;
+  border: solid 1px #6C63FF;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.new-note-input::placeholder {
+  color: gray;
 }
 
 .note-form-btn {
@@ -147,6 +160,7 @@
   color: #6C63FF;
   background-color: white;
   border: 1px solid #6C63FF;
+  cursor: pointer;
 }
 
 .apply-btn  {
@@ -157,7 +171,10 @@
 
 .note-form-btn-div {
   margin-top: 80px;
-  padding: 0 10px;
   display: flex;
   justify-content: space-between;
+}
+
+h3 {
+  margin: 15px auto;
 }

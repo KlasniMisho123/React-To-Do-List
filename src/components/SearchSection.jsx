@@ -43,7 +43,7 @@ export default function SearchSection() {
           <button onClick={handleTheme} className='theme-mode-btn top-bar-btn'>{ isDay? daySvg : nightSvg }</button>
         </div>
       </div>
-      <Notes />
+      <Notes isDay={isDay} />
     </>
   )
 }
