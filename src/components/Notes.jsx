@@ -4,8 +4,8 @@ export default function Notes(props) {
 
   const [noteFormActive, setNoteFormActive] = useState(false)
   const [notes, setNotes] = useState([])
-  const [editNote, setEditNote] = useState(false)
-  const [editNoteIndex, setEditNoteIndex] = useState(null);
+  const [editNoteIndex, setEditNoteIndex] = useState(null)
+  const [editTarget, setEditTarget] = useState("")
   const [newNote, setNewNote] = useState("")
   const [checkedIndex, setCheckedIndex] = useState([])
   const [deletedNotes, setDeletedNotes] = useState([])
@@ -13,13 +13,22 @@ export default function Notes(props) {
 
   function handleNoteformClose() {
     setNoteFormActive(false)
-    setEditNote(false)
     setNewNote("")
+    setEditTarget("")
+    setEditNoteIndex(null)
   }
 
   function handleCreateNote() {
     setNotes((prevNotes) => [...prevNotes, newNote]);
     setNewNote("")
+  }
+
+  function handleEditNote() {
+    console.log(editTarget)
+    console.log(editNoteIndex)
+
+    setEditTarget("")
+    setEditNoteIndex(null)
   }
 
   function handleCheck(index) {
@@ -40,12 +49,15 @@ export default function Notes(props) {
 
   function activateEditNote(note, index) {
     setNoteFormActive(true)
-    setEditNote(true)
-    setNewNote([note, index])
+    setEditTarget(note)
+    setEditNoteIndex(index)
+    setNewNote(note)
   }
 
-  function handlEditNote() {
-    setNewNote(note)
+  function handleEditNote() {
+    setNoteFormActive(false)
+    setEditNoteIndex(null)
+    setEditTarget(null)
   }
   
 
@@ -91,7 +103,9 @@ export default function Notes(props) {
       onClick={handleNoteformClose}>
       </button>
       <div className='note-form'> 
-        <h3> New Note </h3>
+        {editTarget}
+        {editNoteIndex}
+        <h3>{editNoteIndex !== null ? 'Edit Note' : 'New Note'}</h3>
         <input 
           className='new-note-input'
           placeholder='Input your Note...'
@@ -102,7 +116,7 @@ export default function Notes(props) {
             <button className='note-form-btn cancel-btn'
              onClick={handleNoteformClose}>Cancel</button>
             <button className='note-form-btn apply-btn' 
-            onClick={editNote?(handlEditNote):(handleCreateNote)}>
+            onClick={editTarget?(handleEditNote):(handleCreateNote)}>
               Apply
             </button>
             
