@@ -7,7 +7,11 @@ export default function SearchSection() {
   const [isDay, setIsDay] = useState(true)
 
   function handleTheme() {
-    setIsDay(!isDay)
+    setIsDay((prevIsDay) => {
+      const newTheme = !prevIsDay ? "light" : "dark"; 
+      document.documentElement.setAttribute("data-theme", newTheme); 
+      return !prevIsDay;
+    });
   }
 
   const nightSvg = (<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,9 +26,12 @@ export default function SearchSection() {
   return (
     <>
       <div className='search-section'>
-        <div className='title'>TODO LIST</div>
+        <div className='title'
+        style={{ color: isDay ? "black" : "white" }}
+        >TODO LIST</div>
         <div className='topbar-flex'>
-          <div className='search-bar'>
+          <div className='search-bar'
+          >
             <input 
             className='search-input'
             placeholder='Search note..'

@@ -1,23 +1,45 @@
-/* :root {
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #f9fafb;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} */
- :root {
-  background-color: white;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  color-scheme: light dark;
- }
+  --bg-color: white;
+  --text-color: black;
+  --button-bg: lightgray;
+  --button-color: black;
+}
+
+html[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --button-bg: #333333;
+  --button-color: white;
+}
+
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* .search-section {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+} */
  
 .outer-layout-div {
   padding: 20px 0px;
@@ -52,9 +74,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: white;
-  border: 1px solid #6C63FF;
-  border-radius: 4px;
+  /* background-color: white; */
+  background-color: transparent;
+  border: 2px solid #6C63FF;
+  border-radius: 6px;
 }
 
 .search-input {
@@ -62,6 +85,8 @@
   background-color: transparent;
   outline: none;
   width: 400px;
+  max-width: 600px; 
+  min-width: 200px;
   font-weight: 300;
   font-size: 14px;
 }
