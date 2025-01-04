@@ -4,10 +4,18 @@ export default function Notes(props) {
 
   const [noteFormActive, setNoteFormActive] = useState(false)
   const [notes, setNotes] = useState([])
+  const [editNote, setEditNote] = useState(false)
+  const [editNoteIndex, setEditNoteIndex] = useState(null);
   const [newNote, setNewNote] = useState("")
   const [checkedIndex, setCheckedIndex] = useState([])
   const [deletedNotes, setDeletedNotes] = useState([])
   const { isDay } = props
+
+  function handleNoteformClose() {
+    setNoteFormActive(false)
+    setEditNote(false)
+    setNewNote("")
+  }
 
   function handleCreateNote() {
     setNotes((prevNotes) => [...prevNotes, newNote]);
@@ -30,8 +38,13 @@ export default function Notes(props) {
     });
   }
 
-  function handleEdit(note) {
+  function activateEditNote(note, index) {
     setNoteFormActive(true)
+    setEditNote(true)
+    setNewNote([note, index])
+  }
+
+  function handlEditNote() {
     setNewNote(note)
   }
   
@@ -75,7 +88,7 @@ export default function Notes(props) {
       (
       <div className='note-form-overlay'>
       <button className='note-form-overlay-btn' 
-      onClick={() => {setNoteFormActive(false)}}>
+      onClick={handleNoteformClose}>
       </button>
       <div className='note-form'> 
         <h3> New Note </h3>
@@ -87,10 +100,12 @@ export default function Notes(props) {
           />
           <div className="note-form-btn-div">
             <button className='note-form-btn cancel-btn'
-             onClick={() => {setNoteFormActive(false)}}>Cancel</button>
+             onClick={handleNoteformClose}>Cancel</button>
             <button className='note-form-btn apply-btn' 
-              onClick={handleCreateNote}
-            >Apply</button>
+            onClick={editNote?(handlEditNote):(handleCreateNote)}>
+              Apply
+            </button>
+            
           </div>
         </div>
       </div>
@@ -122,7 +137,7 @@ export default function Notes(props) {
                   </div>
                 </div>
                 <div className='todo-btn-div'>
-                  <button className='todo-btn edit-btn' onClick={() => {handleEdit(note)} }>
+                  <button className='todo-btn edit-btn' onClick={() => {activateEditNote(note, noteIndex)} }>
                     {pencilPng}
                   </button>
                   <button className='todo-btn delete-btn' onClick={() => { handleDelete(noteIndex) }}>
