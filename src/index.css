@@ -25,6 +25,10 @@ html[data-theme="dark"] {
 }
 
 html {
+  height: 100%;
+}
+
+body {
   background-color: var(--bg-color);
   color: var(--text-color);
   margin: 0;
@@ -39,10 +43,11 @@ html {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
-} */
- 
+}
+  */
 .outer-layout-div {
   padding: 20px 0px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -74,7 +79,6 @@ html {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* background-color: white; */
   background-color: transparent;
   border: 2px solid #6C63FF;
   border-radius: 6px;
@@ -96,7 +100,6 @@ html {
   color: #F7F7F7;
   border: none;
   font-size: 14px;
-  
   cursor: pointer;
   border-radius: 4px;
 }
@@ -150,7 +153,8 @@ html {
 .note-form {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   position: absolute;
   z-index: 15;
   margin-top: 100px;
@@ -163,6 +167,7 @@ html {
   width: 95%;
   padding: 8px;
   background-color: transparent;
+  color: var(--text-color);
   outline: none;
   border-radius: 4px;
   border: solid 1px #6C63FF;
@@ -183,7 +188,7 @@ html {
 
 .cancel-btn  {
   color: #6C63FF;
-  background-color: white;
+  background-color: transparent;
   border: 1px solid #6C63FF;
   cursor: pointer;
 }
@@ -191,7 +196,7 @@ html {
 .apply-btn  {
   color: white;
   background-color: #6C63FF;
-  border: 1px solid white;
+  border: 1px solid transparent;
 }
 
 .note-form-btn-div {
@@ -209,4 +214,36 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.todo-list {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.note-div {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #6C63FF;
+  width: 100%;
+  gap: 20px;
+  padding: 4px 8px;
+}
+
+.checkbox {
+  border: #6C63FF 1px solid;
+  background-color: #6C63FF;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.fa-check {
+  color: white; 
 }

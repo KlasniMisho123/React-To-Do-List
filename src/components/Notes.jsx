@@ -5,11 +5,16 @@ export default function Notes(props) {
   const [noteFormActive, setNoteFormActive] = useState(false)
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState("")
+  const [isChecked, setIsChecked] = useState(false)
   const { isDay } = props
 
   function handleCreateNote() {
     setNotes((prevNotes) => [...prevNotes, newNote]);
     setNewNote("")
+  }
+
+  function handleCheck() {
+    setIsChecked(!isChecked)
   }
 
   return (
@@ -37,9 +42,26 @@ export default function Notes(props) {
           </div>
         </div>
       </div>
+      //HERE
       ) : (null)}
       <div>
-        {notes.length? notes :
+        {notes.length? 
+        (
+        <div className='todo-list'>
+           {notes.map((note, noteIndex) => {
+            return(
+              <div className='note-div'> 
+                <button className='checkbox'
+                onClick={handleCheck}
+                >
+                  <i className="fa-solid fa-check"></i> 
+                </button>
+                {note}
+              </div>
+            )
+            })}    
+        </div>
+        ):(
         <div className='empty-noted-div'>
           {isDay? (
           <img
@@ -50,7 +72,7 @@ export default function Notes(props) {
           src='./EmptyNotesDark.png'
           />)}
           <h4 style={{ color: isDay ? "black" : "white" }}>Empty...</h4>
-        </div>}
+        </div>)}
       </div>
       <button className="add-note-btn"
         onClick={()=> {setNoteFormActive(true)}}
