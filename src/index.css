@@ -30,6 +30,7 @@ input {
 
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -276,4 +277,46 @@ h3 {
 .todo-btn {
   border: none;
   background-color: transparent;
+}
+
+@media screen and (max-width: 600px) and (min-width: 300px) {
+  body {
+    max-width: 600px;
+    min-width: 300px;
+  }
+  
+  .search-input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: 200px;
+    font-weight: 300;
+    font-size: 14px;
+  } 
+
+  .search-bar {
+    width: 100px; 
+  }
+
+}
+
+@media screen and (max-width: 300px) and (min-width: 200px) {
+  body {
+    max-width: 100%; 
+    min-width: 0px; 
+    overflow-x: hidden;
+  }
+
+  .search-input {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: 50px; 
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  .search-bar {
+    width: 70px; 
+  }
 }
