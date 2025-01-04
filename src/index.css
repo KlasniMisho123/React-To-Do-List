@@ -216,11 +216,22 @@ h3 {
   align-items: center;
 }
 
+.list-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.todo-text-div {
+  display: flex;
+  gap: 8px;
+}
+
 .todo-list {
   padding-top: 30px;
+  width: 35%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .note-div {
@@ -230,11 +241,12 @@ h3 {
   width: 100%;
   gap: 20px;
   padding: 4px 8px;
+  justify-content: space-between;
 }
 
 .checkbox {
   border: #6C63FF 1px solid;
-  background-color: #6C63FF;
+  background-color: transparent;
   border-radius: 2px;
   display: flex;
   justify-content: center;
@@ -246,4 +258,13 @@ h3 {
 
 .fa-check {
   color: white; 
+}
+
+.checked-font {
+  text-decoration: line-through;
+}
+
+.todo-btn {
+  border: none;
+  background-color: transparent;
 }
