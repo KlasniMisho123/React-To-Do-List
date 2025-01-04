@@ -9,7 +9,8 @@ export default function Notes(props) {
   const [newNote, setNewNote] = useState("")
   const [checkedIndex, setCheckedIndex] = useState([])
   const [deletedNotes, setDeletedNotes] = useState([])
-  const { isDay } = props
+  const [editedText, setEditedText] = useState("")
+  const { isDay, filterQuery } = props
 
   function handleNoteformClose() {
     setNoteFormActive(false)
@@ -19,17 +20,10 @@ export default function Notes(props) {
   }
 
   function handleCreateNote() {
-    setNotes((prevNotes) => [...prevNotes, newNote]);
-    setNewNote("")
+      setNotes((prevNotes) => [...prevNotes, newNote]);
+      setNewNote(""); 
   }
-
-  function handleEditNote() {
-    console.log(editTarget)
-    console.log(editNoteIndex)
-
-    setEditTarget("")
-    setEditNoteIndex(null)
-  }
+  
 
   function handleCheck(index) {
     setCheckedIndex((prevIndex) => {
@@ -54,10 +48,18 @@ export default function Notes(props) {
     setNewNote(note)
   }
 
-  function handleEditNote() {
-    setNoteFormActive(false)
-    setEditNoteIndex(null)
-    setEditTarget(null)
+  function handleEditNote() {    
+    setNotes((prevNotes) =>
+      prevNotes.map((note, index) =>
+        index === editNoteIndex ? newNote : note
+      )
+    );
+      setNewNote("");
+      setEditedText(note);
+      setEditTarget(null); 
+      setEditNoteIndex(null);
+      setNoteFormActive(false);
+    
   }
   
 
@@ -85,6 +87,7 @@ export default function Notes(props) {
 
   useEffect(() => {
     localStorage.setItem('checkedIndex', JSON.stringify(checkedIndex));
+    
   }, [checkedIndex]);
 
   useEffect(() => {
@@ -93,6 +96,10 @@ export default function Notes(props) {
       setCheckedIndex(savedCheckedIndex);
     }
   }, []);
+
+  const filteredNotes = notes.filter(note => 
+    note.toLowerCase().includes(filterQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -103,65 +110,83 @@ export default function Notes(props) {
       onClick={handleNoteformClose}>
       </button>
       <div className='note-form'> 
-        {editTarget}
-        {editNoteIndex}
         <h3>{editNoteIndex !== null ? 'Edit Note' : 'New Note'}</h3>
         <input 
           className='new-note-input'
           placeholder='Input your Note...'
           value={newNote}
-          onChange={(e)=>{setNewNote(e.target.value)}}
+          onChange={(e)=>{(setNewNote(e.target.value))}}
           />
           <div className="note-form-btn-div">
             <button className='note-form-btn cancel-btn'
              onClick={handleNoteformClose}>Cancel</button>
             <button className='note-form-btn apply-btn' 
-            onClick={editTarget?(handleEditNote):(handleCreateNote)}>
+            onClick={() => {
+              if (!editTarget || editTarget.length === 0) {
+                handleCreateNote();
+              } else {
+                handleEditNote();
+              }
+            }}>
               Apply
             </button>
             
           </div>
         </div>
       </div>
-      //HERE
       ) : (null)}
-      <div className='list-div'>
+      <div className='list-div'>  
         {notes.length? 
         (
         <div className='todo-list'>
-          {notes.map((note, noteIndex) => {
-            if (deletedNotes.includes(noteIndex)) {
-              return null; 
-            }
-            
-            return (
-              <div className='note-div' key={noteIndex}> 
-                <div className='todo-text-div'>
-                  <button className='checkbox'
-                    style={{
-                      backgroundColor: Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? '#6C63FF' : 'white',
-                    }}
-                    onClick={() => { handleCheck(noteIndex) }}
-                  >
-                    {Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? 
-                      <i className="fa-solid fa-check"></i> : null}
-                  </button>
-                  <div className={Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? 'checked-font' : ''}>
-                    {note}
+          {
+          filteredNotes.length != 0 ? 
+            filteredNotes.map((note, noteIndex) => {
+              if (deletedNotes.includes(noteIndex)) {
+                return null; 
+              }
+
+              return (
+                <div className='note-div' key={noteIndex}> 
+                  <div className='todo-text-div'>
+                    <button 
+                      className='checkbox'
+                      style={{
+                        backgroundColor: Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? '#6C63FF' : 'white',
+                      }}
+                      onClick={() => { handleCheck(noteIndex) }}
+                    >
+                      {Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? 
+                        <i className="fa-solid fa-check"></i> : null}
+                    </button>
+                    <div className={Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? 'checked-font' : ''}>
+                      {note}
+                    </div>
                   </div>
+                  <div className='todo-btn-div'>
+                    <button className='todo-btn edit-btn' onClick={() => { activateEditNote(note, noteIndex) }} >
+                      {pencilPng}
+                    </button>
+                    <button className='todo-btn delete-btn' onClick={() => { handleDelete(noteIndex) }} >
+                      {trashCanPng}
+                    </button>
+                  </div>     
                 </div>
-                <div className='todo-btn-div'>
-                  <button className='todo-btn edit-btn' onClick={() => {activateEditNote(note, noteIndex)} }>
-                    {pencilPng}
-                  </button>
-                  <button className='todo-btn delete-btn' onClick={() => { handleDelete(noteIndex) }}>
-                    {trashCanPng}
-                  </button>
-                </div>     
-              </div>
-            );
-          })}
- 
+              );
+            }) 
+          : (
+            <div className='empty-noted-div'>
+              {isDay? (
+              <img
+              src='./EmptyNotesLight.png'
+              />
+              ) : (
+              <img
+              src='./EmptyNotesDark.png'
+              />)}
+              <h4 style={{ color: isDay ? "black" : "white" }}>Empty...</h4>
+            </div>) 
+        }
         </div>
         ):(
         <div className='empty-noted-div'>

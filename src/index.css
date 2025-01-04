@@ -24,6 +24,10 @@ html[data-theme="dark"] {
   --button-color: white;
 }
 
+input {
+  color: var(--text-color);
+}
+
 html {
   height: 100%;
 }
@@ -197,6 +201,7 @@ body {
   color: white;
   background-color: #6C63FF;
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .note-form-btn-div {

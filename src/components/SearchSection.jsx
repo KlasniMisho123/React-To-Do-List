@@ -5,6 +5,7 @@ import Notes from './Notes'
 export default function SearchSection() {
 
   const [isDay, setIsDay] = useState(true)
+  const [filterQuery, setFilterQuery] = useState("")
 
   function handleTheme() {
     setIsDay((prevIsDay) => {
@@ -35,6 +36,8 @@ export default function SearchSection() {
             <input 
             className='search-input'
             placeholder='Search note..'
+            value={filterQuery}
+            onChange={(e)=>{setFilterQuery(e.target.value)}}
             />
             <>
               <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +53,7 @@ export default function SearchSection() {
           <button onClick={handleTheme} className='theme-mode-btn top-bar-btn'>{ isDay? daySvg : nightSvg }</button>
         </div>
       </div>
-      <Notes isDay={isDay} />
+      <Notes isDay={isDay} filterQuery={filterQuery} />
     </>
   )
 }
