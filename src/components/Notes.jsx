@@ -38,9 +38,19 @@ export default function Notes(props) {
         </div>
       </div>
       ) : (null)}
-
       <div>
-        {notes.length? notes : "empty"}
+        {notes.length? notes :
+        <div className='empty-noted-div'>
+          {isDay? (
+          <img
+          src='./EmptyNotesLight.png'
+          />
+          ) : (
+          <img
+          src='./EmptyNotesDark.png'
+          />)}
+          <h4 style={{ color: isDay ? "black" : "white" }}>Empty...</h4>
+        </div>}
       </div>
       <button className="add-note-btn"
         onClick={()=> {setNoteFormActive(true)}}
