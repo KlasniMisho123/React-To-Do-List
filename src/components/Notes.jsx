@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Notes(props) {
 
@@ -6,6 +6,7 @@ export default function Notes(props) {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState("")
   const [checkedIndex, setCheckedIndex] = useState([])
+  const [deletedNotes, setDeletedNotes] = useState([])
   const { isDay } = props
 
   function handleCreateNote() {
@@ -16,12 +17,24 @@ export default function Notes(props) {
   function handleCheck(index) {
     setCheckedIndex((prevIndex) => {
       if (Array.isArray(checkedIndex) && checkedIndex.includes(index)) {
-        setCheckedIndex(prevIndex.filter(i => i !== index))
+        return (prevIndex.filter(i => i !== index))
       } else {
-        setCheckedIndex([...prevIndex, index]) 
+        return ([...prevIndex, index]) 
       }
     });
   }
+
+  function handleDelete(index) {
+    setDeletedNotes((prevIndex) => {
+      return [...prevIndex, index]; 
+    });
+  }
+
+  function handleEdit(note) {
+    setNoteFormActive(true)
+    setNewNote(note)
+  }
+  
 
   const pencilPng = (
     <svg width="16" height="16" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,6 +57,17 @@ export default function Notes(props) {
       <path d="M7.5 9V12.75" stroke="#E50000" strokeLinecap="round"/>
     </svg>
   )
+
+  useEffect(() => {
+    localStorage.setItem('checkedIndex', JSON.stringify(checkedIndex));
+  }, [checkedIndex]);
+
+  useEffect(() => {
+    const savedCheckedIndex = JSON.parse(localStorage.getItem('checkedIndex'));
+    if (savedCheckedIndex) {
+      setCheckedIndex(savedCheckedIndex);
+    }
+  }, []);
 
   return (
     <>
@@ -76,29 +100,39 @@ export default function Notes(props) {
         {notes.length? 
         (
         <div className='todo-list'>
-          {checkedIndex}
-           {notes.map((note, noteIndex) => {
-            return(
+          {notes.map((note, noteIndex) => {
+            if (deletedNotes.includes(noteIndex)) {
+              return null; 
+            }
+            
+            return (
               <div className='note-div' key={noteIndex}> 
                 <div className='todo-text-div'>
                   <button className='checkbox'
-                  style={{
-                    backgroundColor: Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? '#6C63FF' : 'white',
-                  }}
-                  onClick={()=>{handleCheck(noteIndex)}}>
+                    style={{
+                      backgroundColor: Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? '#6C63FF' : 'white',
+                    }}
+                    onClick={() => { handleCheck(noteIndex) }}
+                  >
                     {Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? 
-                      <i className="fa-solid fa-check"></i> :(
-                      null)}
+                      <i className="fa-solid fa-check"></i> : null}
                   </button>
-                  <div className={Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? 'checked-font' : ''}> {note} </div>
+                  <div className={Array.isArray(checkedIndex) && checkedIndex.includes(noteIndex) ? 'checked-font' : ''}>
+                    {note}
+                  </div>
                 </div>
                 <div className='todo-btn-div'>
-                  <button className='todo-btn edit'>{pencilPng}</button>
-                  <button className='todo-btn delete'>{trashCanPng}</button>
+                  <button className='todo-btn edit-btn' onClick={() => {handleEdit(note)} }>
+                    {pencilPng}
+                  </button>
+                  <button className='todo-btn delete-btn' onClick={() => { handleDelete(noteIndex) }}>
+                    {trashCanPng}
+                  </button>
                 </div>     
               </div>
-            )
-            })}    
+            );
+          })}
+ 
         </div>
         ):(
         <div className='empty-noted-div'>
