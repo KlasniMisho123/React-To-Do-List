@@ -1,32 +1,30 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useTodoChallenges() {
-  const [challenges, setChallenges] = useState([]);
+export default function useRandomMovie() {
+  const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  const accessToken = 'YOUR_ACCESS_TOKEN';
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchChallenges();
+    fetchRandomMovie();
   }, []);
 
-  const fetchChallenges = async () => {
-    setLoading(true);
+  const fetchRandomMovie = async () => {
     try {
-      const response = await axios.get('https://www.activitylist.com/api/activities', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        },
-        params: {
-        }
-      });
-      setChallenges(response.data.activities);
+      setLoading(true);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY&language=en-US&page=1`
+      );
+
+      const randomMovie = response.data.results[Math.floor(Math.random() * response.data.results.length)];
+      setMovie(randomMovie);
     } catch (error) {
-      console.error("Error fetching challenges:", error);
+      setError(error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  return { challenges, loading, fetchChallenges };
+  return { movie, loading, error };
 }
