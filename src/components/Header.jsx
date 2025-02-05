@@ -31,9 +31,6 @@ export default function Header() {
             <Link to="/to-do-list">Todolist Page</Link>
           </li>
           <li>
-            <Link to="/to-do-challenges">TodoChallenges</Link>
-          </li>
-          <li>
             <Link to="/about us">About Us</Link>
           </li>
         </ul>

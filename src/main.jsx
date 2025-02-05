@@ -7,7 +7,6 @@ import Header from './components/Header';
 import Home from './components/Home';
 import AboutUs from './components/AboutUs';
 import ErrorPage from './components/ErrorPage'; 
-import TodoChallenges from './components/TodoChallenges';
 
 const router = createBrowserRouter([
   {
@@ -16,15 +15,6 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Home />
-      </>
-    ),
-  },
-  {
-    path: '/to-do-challenges',
-    element: (
-      <>
-        <Header />
-        <TodoChallenges />
       </>
     ),
   },
