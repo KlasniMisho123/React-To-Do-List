@@ -1,16 +1,18 @@
-import React from 'react'
+import React from 'react';
+import useJoke from './customHooks/useJoke';
 
 export default function JokesPage() {
+  const { joke, loading, error, getJoke } = useJoke(); 
+
   return (
-   <div > 
-    <h1> Better </h1> 
-    {/* <h1 > {joke} </h1> */}
-    <div></div>
-    <button 
-    text="Generate Joke"
-    dark 
-    // clickHandler={getJoke}
-    />
-  </div>
-  )
+    <div className="jokes-container">
+    <img src='clown.png' alt='Clown' className='clown-img'/>
+      <h1 className="jokes-title">Generate Joke</h1>
+      {loading && <p>Loading...</p>}
+      {error && <p className="error-text">{error}</p>}
+      <p className="joke-text">{joke}</p>
+      
+      <button className="generate-btn" onClick={getJoke}>Generate Joke</button>
+    </div>
+  );
 }
