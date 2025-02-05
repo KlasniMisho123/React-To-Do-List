@@ -31,6 +31,9 @@ export default function Header() {
             <Link to="/to-do-list" className={({ isActive }) => (isActive ? 'active' : '')}>Todolist Page</Link>
           </li>
           <li>
+            <Link to="/to-do-challenges" className={({ isActive }) => (isActive ? 'active' : '')}>TodoChallenges</Link>
+          </li>
+          <li>
             <Link to="/about us" className={({ isActive }) => (isActive ? 'active' : '')}>About Us</Link>
           </li>
         </ul>
