@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import AboutUs from './components/AboutUs';
 import ErrorPage from './components/ErrorPage'; 
+import JokesPage from './components/JokesPage';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,15 @@ const router = createBrowserRouter([
       <>
         <Header />
         <Home />
+      </>
+    ),
+  },
+  {
+    path: '/jokes page',
+    element: (
+      <>
+        <Header />
+        <JokesPage />
       </>
     ),
   },
