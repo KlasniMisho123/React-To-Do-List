@@ -3,7 +3,6 @@ import Notes from './Notes'
 
 
 export default function SearchSection() {
-
   const [isDay, setIsDay] = useState(true)
   const [filterQuery, setFilterQuery] = useState("")
 
@@ -25,7 +24,8 @@ export default function SearchSection() {
     )
     
   return (
-    <>
+    <div className='outer-layout-div'>
+
       <div className='search-section'>
         <div className='title'
         style={{ color: isDay ? "black" : "white" }}
@@ -54,6 +54,6 @@ export default function SearchSection() {
         </div>
       </div>
       <Notes isDay={isDay} filterQuery={filterQuery} />
-    </>
+    </div>
   )
 }
