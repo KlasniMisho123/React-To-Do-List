@@ -25,16 +25,16 @@ export default function Header() {
       <nav>
         <ul className="navbar">
           <li>
-            <Link to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/to-do-list" className={({ isActive }) => (isActive ? 'active' : '')}>Todolist Page</Link>
+            <Link to="/to-do-list">Todolist Page</Link>
           </li>
           <li>
-            <Link to="/to-do-challenges" className={({ isActive }) => (isActive ? 'active' : '')}>TodoChallenges</Link>
+            <Link to="/to-do-challenges">TodoChallenges</Link>
           </li>
           <li>
-            <Link to="/about us" className={({ isActive }) => (isActive ? 'active' : '')}>About Us</Link>
+            <Link to="/about us">About Us</Link>
           </li>
         </ul>
       </nav>
