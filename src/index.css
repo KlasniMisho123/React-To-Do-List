@@ -445,6 +445,60 @@ footer {
     font-size: 1rem;
   }
 }
+/* ERRORPAGE*/
+.error-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+}
+
+.error-content {
+  text-align: center;
+  background-color: var(--bg-color);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.error-text {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+.error-description {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
+
+.error-btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #6C63FF;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.error-btn:hover {
+  background-color: #5748C1;
+}
 
 /*  */
 @media screen and (max-width: 600px) and (min-width: 300px) {
